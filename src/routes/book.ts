@@ -1,6 +1,7 @@
 import { Router,Request,Response } from "express";
 import{body,param,validationResult} from "express-validator"
-import { createNewBook, deleteBook, getAllBooks, getBookById } from "../controllers/books";
+import { createNewBook, deleteBook, getAllBooks, getBookById, updateBook } from "../controllers/books";
+import { updateAuthor } from "../controllers/authors";
 
 const router = Router()
 router.get("/",getAllBooks)
@@ -35,3 +36,14 @@ router.delete("/:id",[
     }
     deleteBook(req,res)
 })
+router.put("/:id",[
+    param("id").isInt().withMessage("Id must be an Integer"),
+    body("title").optional().notEmpty().withMessage("Title cant be empty"),
+],(req:Request,res:Response)=>{
+    const errors = validationResult(req)
+    if (!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()})
+    }
+    updateBook(req,res)
+})
+ export default router;

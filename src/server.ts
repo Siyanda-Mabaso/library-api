@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 // import { loggerMiddleware } from './middleware/logger';
 import router from './routes/author'
 // import { notFoundHandler } from './middleware/error';
+import bookRouter from "./routes/book" 
 
 const app: Express = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 // app.use(loggerMiddleware)
 app.use("/v1/authors", router)
+app.use("/v1/books",bookRouter)
 
 // app.use(notFoundHandler)
 
