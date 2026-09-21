@@ -44,12 +44,12 @@ export const deleteAuthor = (req: Request, res: Response) => {
 
     authors.splice(index, 1)
 
-    res.status(200).json({ message: "Author deleted successfully" })
+    res.status(200).json({ message: "Deleted" })
 }
 
 export const updateAuthor = (req: Request, res: Response) => {
     const { id } = req.params
-    const { firstName, lastName, emailAddress } = req.body
+    const { name } = req.body
 
     const author = authors.find((author) => author.id === parseInt(id as string))
 
