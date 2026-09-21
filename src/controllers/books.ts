@@ -42,3 +42,15 @@ export const getAllBooks = (req: Request, res: Response) => {
     books.splice(index,1)
     res.status(200).json({massage:"Deleted"})
    }
+
+   // function to update the book 
+   export const updateBook = (req:Request, res :Response) => {
+    const {id} = req.params
+    const{ title,authorId,year} = req.body
+
+    const book = books.find ((book)=> book.id === parseInt(id as string))
+    if (!book){
+        return res.status(404).json({massage:'Book not found'})
+    }
+    res.status(200).json(book)
+   }
