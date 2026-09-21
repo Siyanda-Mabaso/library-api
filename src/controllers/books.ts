@@ -17,3 +17,15 @@ export const getAllBooks = (req: Request, res: Response) => {
     }
     res.status(200).json(book)
    }
+   // function to create new book 
+   export const createNewBook= (req:Request, res:Response)=>{
+
+    const{title,authorId,year}= req.body
+
+    const newBook : Book ={
+        id:books.length +1,
+        title,authorId,year
+    }
+    books.push(newBook)
+    res.status(201).json(newBook)
+   }
