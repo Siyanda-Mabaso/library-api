@@ -18,7 +18,7 @@ export const getAllBooks = (req: Request, res: Response) => {
     res.status(200).json(book)
    }
    // function to create new book 
-   export const createNewBook= ( res:Response)=>{
+    export const createNewBook= (req: Request, res:Response)=>{
 
     const{title,authorId,year}= req.body
 
