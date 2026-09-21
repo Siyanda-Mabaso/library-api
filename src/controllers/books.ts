@@ -18,7 +18,7 @@ export const getAllBooks = (req: Request, res: Response) => {
     res.status(200).json(book)
    }
    // function to create new book 
-   export const createNewBook= (req:Request, res:Response)=>{
+   export const createNewBook= ( res:Response)=>{
 
     const{title,authorId,year}= req.body
 
@@ -28,4 +28,17 @@ export const getAllBooks = (req: Request, res: Response) => {
     }
     books.push(newBook)
     res.status(201).json(newBook)
+   }
+   // function to delete the book
+
+   export const deleteBook = ( req:Request,res:Response)=> {
+
+    const{id} =req.params
+
+    const index = books.findIndex((book)=> book.id === parseInt(id as string))
+    if (index === -1){
+        return res. status(404).json({massage: "Book not found"})
+    }
+    books.splice(index,1)
+    res.status(200).json({massage:"Deleted"})
    }
